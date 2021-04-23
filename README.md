@@ -1,4 +1,4 @@
 # back-e-commerce
 Back-end e-commerce para trabalho na faculdade UNIARARAS.
 
-test
+Utilizando JAVA com o protocolo REST.
