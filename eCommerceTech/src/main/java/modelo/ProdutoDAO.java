@@ -20,6 +20,7 @@ public class ProdutoDAO extends DAO {
         super();
     }
     
+    // GET
     public ArrayList<Produto> showProduto() throws SQLException {
         String sql = "SELECT * FROM produto";
                                                   
@@ -28,7 +29,15 @@ public class ProdutoDAO extends DAO {
         
         ArrayList<Produto> list = new ArrayList<>();
         while(rs.next()){
-            list.add(new Produto(rs.getInt("id"), rs.getString("nome"), rs.getFloat("preco"), rs.getString("foto"), rs.getFloat("quantidade"), rs.getString("descricao"), rs.getBoolean("promocao")));
+            list.add(new Produto(
+                    rs.getInt("id"),
+                    rs.getInt("id_usuario"),
+                    rs.getString("nome"),
+                    rs.getFloat("preco"),
+                    rs.getString("foto"),
+                    rs.getInt("quantidade"),
+                    rs.getString("descricao"),
+                    rs.getBoolean("promocao")));
         }
         
         return list;
@@ -41,7 +50,15 @@ public class ProdutoDAO extends DAO {
         ResultSet rs = stm.executeQuery();
         
         if (rs.next()) {
-            Produto produto = new Produto(rs.getInt("id"), rs.getString("nome"), rs.getFloat("preco"), rs.getString("foto"), rs.getFloat("quantidade"), rs.getString("descricao"), rs.getBoolean("promocao"));
+            Produto produto = new Produto(
+                    rs.getInt("id"),
+                    rs.getInt("id_usuario"),
+                    rs.getString("nome"),
+                    rs.getFloat("preco"),
+                    rs.getString("foto"),
+                    rs.getInt("quantidade"),
+                    rs.getString("descricao"),
+                    rs.getBoolean("promocao"));
         
             return produto;
         }
@@ -49,44 +66,59 @@ public class ProdutoDAO extends DAO {
         return null;
     }
     
-    public Produto insertAcao(String descricao) throws SQLException {
-        String sql = "INSERT INTO Acao (descricao) VALUES('" + descricao + "')";
+    public Produto insertProduto(Integer id_usuario, String nome, Float preco, String foto, Integer quantidade, String descricao, Boolean promocao) throws SQLException {
+        String sql = "INSERT INTO produto (id_usuario, nome, preco, foto, quantidade, descricao, promocao) "
+                + "VALUES(" + id_usuario + ",'" + nome + "'," + preco + ",'" + foto  + "'," + quantidade + ",'" + descricao + "'," + promocao + ")";
                
         PreparedStatement stm = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         stm.executeUpdate();
         ResultSet rs = stm.getGeneratedKeys();
         
         if(rs.next() && rs != null){
-            Produto acao = this.selectAcao(rs.getInt(1));
+            Produto produto = this.selectProduto(rs.getInt(1));
         
-            return acao;
+            return produto;
         }    
 
         return null;
     }
     
-    public Produto updateAcao(Integer id, String descricao) throws SQLException {
-        String sql = "UPDATE Acao SET descricao = '" + descricao + "' WHERE id = " + id;
+    public Produto updateProduto(Integer id, String nome, Float preco, String foto, Integer quantidade, String descricao, Boolean promocao) throws SQLException {
+        String sql = "UPDATE produto SET nome = '" + nome + "',"
+                + "preco = " + preco + ","
+                + "foto = '" + foto + "',"
+                + "preco = " + quantidade + ","
+                + "preco = '" + descricao + "',"
+                + "preco = " + promocao + ""
+                + "WHERE id = " + id;
                
         PreparedStatement stm = con.prepareStatement(sql);
         stm.execute();
         
-        String sqlReturn = "SELECT * FROM Acao WHERE id = " + id;
+        String sqlReturn = "SELECT * FROM produto WHERE id = " + id;
             
         PreparedStatement stm2 = con.prepareStatement(sqlReturn);
         ResultSet rs = stm2.executeQuery();
 
         if (rs.next()) {
-            Produto acao = new Produto(rs.getInt("id"), rs.getString("descricao"));
+            Produto produto = new Produto(
+                    rs.getInt("id"),
+                    rs.getInt("id_usuario"),
+                    rs.getString("nome"),
+                    rs.getFloat("preco"),
+                    rs.getString("foto"),
+                    rs.getInt("quantidade"),
+                    rs.getString("descricao"),
+                    rs.getBoolean("promocao"));
 
-            return acao;
+            return produto;
         }
 
         return null;
     }
     
-    public void deleteAcao(Integer id) throws SQLException {
-        String sql = "DELETE FROM Acao WHERE id = " + id;
+    public void deleteProduto(Integer id) throws SQLException {
+        String sql = "DELETE FROM produto WHERE id = " + id;
                
         PreparedStatement stm = con.prepareStatement(sql);
         stm.execute();

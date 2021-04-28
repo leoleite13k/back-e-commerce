@@ -11,15 +11,17 @@ package modelo;
  */
 public class Produto {
     private Integer id;
+    private Integer id_usuario;
     private String nome;
     private Float preco;
     private String foto;
-    private Float quantidade;
+    private Integer quantidade;
     private String descricao;
     private Boolean promocao;
     
-    public Produto(Integer id, String nome, Float preco, String foto, Float quantidade, String descricao, Boolean promocao) {
+    public Produto(Integer id, Integer id_usuario, String nome, Float preco, String foto, Integer quantidade, String descricao, Boolean promocao) {
         this.id = id;
+        this.id_usuario = id_usuario;
         this.nome = nome;
         this.preco = preco;
         this.foto = foto;
@@ -30,6 +32,10 @@ public class Produto {
 
     public Integer getId() {
         return id;
+    }
+    
+    public Integer getId_usuario() {
+        return id_usuario;
     }
 
     public String getNome() {
@@ -44,7 +50,7 @@ public class Produto {
         return foto;
     }
 
-    public Float getQuantidade() {
+    public Integer getQuantidade() {
         return quantidade;
     }
 

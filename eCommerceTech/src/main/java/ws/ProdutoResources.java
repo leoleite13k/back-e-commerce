@@ -27,7 +27,7 @@ import modelo.ProdutoDAO;
  * 
  * @author leonardoleite
  */
-@Path("acao")
+@Path("produto")
 public class ProdutoResources {
 
     @Context
@@ -48,34 +48,48 @@ public class ProdutoResources {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("{id_acao}")
-    public String selectAcao(@PathParam("id_acao") Integer idAcao) throws SQLException, ClassNotFoundException {
-        return gson.toJson(acaoDAO.selectAcao(idAcao));
+    @Path("{id}")
+    public String selectProduto(@PathParam("id") Integer id) throws SQLException, ClassNotFoundException {
+        return gson.toJson(produtoDAO.selectProduto(id));
     }
     
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("{id_acao}")
-    public String updateAcao(@PathParam("id_acao") Integer idAcao, String json) throws SQLException, ClassNotFoundException {
-        Produto acao = gson.fromJson(json, Produto.class);
+    @Path("{id}")
+    public String updateProduto(@PathParam("id") Integer id, String json) throws SQLException, ClassNotFoundException {
+        Produto produto = gson.fromJson(json, Produto.class);
         
-        return gson.toJson(acaoDAO.updateAcao(idAcao, acao.getDescricao()));      
+        return gson.toJson(produtoDAO.updateProduto(
+            id,
+            produto.getNome(),
+            produto.getPreco(),
+            produto.getFoto(),
+            produto.getQuantidade(),
+            produto.getDescricao(),
+            produto.getPromocao()));      
     }
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public String insertAcao(String json) throws SQLException, ClassNotFoundException {  
-        Produto acao = gson.fromJson(json, Produto.class);
-        Produto novaAcao = acaoDAO.insertAcao(acao.getDescricao());
+    public String insertProduto(String json) throws SQLException, ClassNotFoundException {       
+        Produto produto = gson.fromJson(json, Produto.class);
+        Produto novoProduto = produtoDAO.insertProduto(
+            produto.getId_usuario(),
+            produto.getNome(),
+            produto.getPreco(),
+            produto.getFoto(),
+            produto.getQuantidade(),
+            produto.getDescricao(),
+            produto.getPromocao());
         
-        return gson.toJson(acaoDAO.selectAcao(novaAcao.getId()));
+        return gson.toJson(produtoDAO.selectProduto(novoProduto.getId()));
     }
     
     @DELETE
-    @Path("{id_acao}")
-    public void insertAcao(@PathParam("id_acao") Integer idAcao) throws SQLException, ClassNotFoundException {  
-        acaoDAO.deleteAcao(idAcao);
+    @Path("{id}")
+    public void insertProduto(@PathParam("id") Integer id) throws SQLException, ClassNotFoundException {  
+        produtoDAO.deleteProduto(id);
     }
 }
