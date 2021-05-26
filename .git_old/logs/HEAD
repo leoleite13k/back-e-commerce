@@ -1,0 +1,8 @@
+0000000000000000000000000000000000000000 3cda81a8d6b655cc8d4f470309bafbc38138eccb Leonardo Leite <leonardo.leite@dextra-sw.com> 1619214486 -0300	clone: from git@github.com:leoleite13k/back-e-commerce.git
+3cda81a8d6b655cc8d4f470309bafbc38138eccb 9ad05f5e847c8bc8f0768bd791fa95805561cd3f Leonardo Leite <leonardo.leite@dextra-sw.com> 1619220399 -0300	commit: Alterado para ecommerce
+9ad05f5e847c8bc8f0768bd791fa95805561cd3f e8943d94d7518486a386d723e2d950162bcc66ab Leonardo Leite <leonardo.leite@dextra-sw.com> 1619221003 -0300	pull: Fast-forward
+e8943d94d7518486a386d723e2d950162bcc66ab 12ba4153edba6c6ca6734eeb57d5523c47741a3c Leonardo Leite <leonardo.leite@dextra-sw.com> 1619221177 -0300	commit: Alterado readme 2
+12ba4153edba6c6ca6734eeb57d5523c47741a3c 03824384527bd8c88c0ca408abdb880bda232fd8 Leonardo Leite <leonardo.leite@dextra-sw.com> 1619652412 -0300	commit: Criado rota de produtos e CRUD
+03824384527bd8c88c0ca408abdb880bda232fd8 37144f013b9bdf514c09e3981b972c0831dbf48f Leonardo Leite <leonardo.leite@dextra-sw.com> 1619656060 -0300	commit: Removido partes inutilizaveis
+37144f013b9bdf514c09e3981b972c0831dbf48f 37144f013b9bdf514c09e3981b972c0831dbf48f Leonardo Leite <leonardotleite13k@gmail.com> 1622067716 -0300	reset: moving to HEAD
+37144f013b9bdf514c09e3981b972c0831dbf48f 8d986446308fa342b0570d8c6c750159a49de5ed Leonardo Leite <leonardotleite13k@gmail.com> 1622070515 -0300	commit: Inserido login e CRUD de usuario
