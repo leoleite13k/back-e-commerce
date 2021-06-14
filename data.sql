@@ -1,3 +1,8 @@
+CREATE DATABASE ecommerce;
+
+USE ecommerce;
+
+
 CREATE TABLE `usuario` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`email` varchar(150) NOT NULL,
@@ -22,20 +27,22 @@ CREATE TABLE `produto` (
 CREATE TABLE `compra` (
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`id_usuario` INT NOT NULL,
-	`frete` FLOAT,
+	`frete` FLOAT NOT NULL,
+	`total` FLOAT NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `compra_produto` (
 	`id` INT NOT NULL,
 	`id_produto` INT NOT NULL
+	`preco` FLOAT NOT NULL,
 );
 
 ALTER TABLE `produto` ADD CONSTRAINT `produto_fk0` FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`id`);
 
 ALTER TABLE `compra` ADD CONSTRAINT `compra_fk0` FOREIGN KEY (`id_usuario`) REFERENCES `usuario`(`id`);
 
-ALTER TABLE `compra_produto` ADD CONSTRAINT `compra_produto_fk0` FOREIGN KEY (`id`) REFERENCES `compra`(`id`);
+ALTER TABLE `compra_produto` ADD CONSTRAINT `compra_produto_fk0` FOREIGN KEY (`id`) REFERENCES `compra`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `compra_produto` ADD CONSTRAINT `compra_produto_fk1` FOREIGN KEY (`id_produto`) REFERENCES `produto`(`id`);
 

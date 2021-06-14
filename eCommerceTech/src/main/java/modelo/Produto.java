@@ -29,6 +29,13 @@ public class Produto {
         this.descricao = descricao;
         this.promocao = promocao;
     }
+    
+    public Produto(Integer id, String nome, String foto, Float preco) {
+        this.id = id;
+        this.nome = nome;
+        this.foto = foto;
+        this.preco = preco;
+    }
 
     public Integer getId() {
         return id;
