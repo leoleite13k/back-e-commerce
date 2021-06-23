@@ -44,11 +44,9 @@ public class LoginResources {
     @Produces(MediaType.APPLICATION_JSON)
     public String login(String json) throws SQLException, ClassNotFoundException {       
         Usuario usuario = gson.fromJson(json, Usuario.class);
-        Boolean logged = usuarioDAO.login(
+        return gson.toJson(usuarioDAO.login(
             usuario.getEmail(),
             usuario.getSenha(),
-            usuario.getAdministrador());
-        
-        return gson.toJson(logged);
+            usuario.getAdministrador()));
     }
 }

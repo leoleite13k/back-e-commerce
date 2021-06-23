@@ -42,8 +42,9 @@ public class ProdutoResources {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String showProduto() throws SQLException, ClassNotFoundException {       
-        return gson.toJson(produtoDAO.showProduto());        
+    @QueryParam("id_usuario")
+    public String showProduto(@QueryParam("id_usuario") String id_usuario) throws SQLException, ClassNotFoundException {            
+        return gson.toJson(produtoDAO.showProduto(id_usuario));        
     }
     
     @GET

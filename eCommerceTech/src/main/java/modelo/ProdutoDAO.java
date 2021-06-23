@@ -21,8 +21,12 @@ public class ProdutoDAO extends DAO {
     }
     
     // GET
-    public ArrayList<Produto> showProduto() throws SQLException {
+    public ArrayList<Produto> showProduto(String id_usuario) throws SQLException {
         String sql = "SELECT * FROM produto";
+        
+        if (!"".equals(id_usuario) && id_usuario != null) {
+            sql = sql + " WHERE id_usuario = " + id_usuario;
+        }
                                                   
         PreparedStatement stm = con.prepareStatement(sql);
         ResultSet rs = stm.executeQuery();
@@ -87,10 +91,10 @@ public class ProdutoDAO extends DAO {
         String sql = "UPDATE produto SET nome = '" + nome + "',"
                 + "preco = " + preco + ","
                 + "foto = '" + foto + "',"
-                + "preco = " + quantidade + ","
-                + "preco = '" + descricao + "',"
-                + "preco = " + promocao + ""
-                + "WHERE id = " + id;
+                + "quantidade = " + quantidade + ","
+                + "descricao = '" + descricao + "',"
+                + "promocao = " + promocao + ""
+                + " WHERE id = " + id;
                
         PreparedStatement stm = con.prepareStatement(sql);
         stm.execute();
