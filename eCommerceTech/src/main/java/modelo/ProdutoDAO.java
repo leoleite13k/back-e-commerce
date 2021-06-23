@@ -21,11 +21,15 @@ public class ProdutoDAO extends DAO {
     }
     
     // GET
-    public ArrayList<Produto> showProduto(String id_usuario) throws SQLException {
+    public ArrayList<Produto> showProduto(String id_usuario, String nome) throws SQLException {
         String sql = "SELECT * FROM produto";
         
         if (!"".equals(id_usuario) && id_usuario != null) {
             sql = sql + " WHERE id_usuario = " + id_usuario;
+        }
+        
+        if (!"".equals(nome) && nome != null) {
+            sql = sql + " WHERE nome LIKE '%" + nome + "%'";
         }
                                                   
         PreparedStatement stm = con.prepareStatement(sql);
@@ -127,4 +131,5 @@ public class ProdutoDAO extends DAO {
         PreparedStatement stm = con.prepareStatement(sql);
         stm.execute();
     }
+    
 }

@@ -29,11 +29,44 @@ public class Produto {
         this.descricao = descricao;
         this.promocao = promocao;
     }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setId_usuario(Integer id_usuario) {
+        this.id_usuario = id_usuario;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setPreco(Float preco) {
+        this.preco = preco;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public void setPromocao(Boolean promocao) {
+        this.promocao = promocao;
+    }
     
-    public Produto(Integer id, String nome, String foto, Float preco) {
+    public Produto(Integer id, String nome, String foto, Integer quantidade, Float preco) {
         this.id = id;
         this.nome = nome;
         this.foto = foto;
+        this.quantidade = quantidade;
         this.preco = preco;
     }
 

@@ -40,20 +40,21 @@ public class CompraDAO extends DAO {
         
         compras.forEach(compra -> {
             try {
-                String sqlProduto = "SELECT produto.id, produto.nome, produto.foto, compra_produto.preco"
+                String sqlProduto = "SELECT produto.id, produto.nome, produto.foto, compra_produto.quantidade, compra_produto.preco"
                         + " FROM compra_produto"
                         + " INNER JOIN produto ON compra_produto.id_produto = produto.id"
                         + " WHERE compra_produto.id = " + compra.getId();
                 
                 PreparedStatement stmProduto = con.prepareStatement(sqlProduto);
                 ResultSet rsProduto = stmProduto.executeQuery();
-                
+                                
                 ArrayList<Produto> produtos = new ArrayList<>();
                 while(rsProduto.next()){
                     produtos.add(new Produto(
                             rsProduto.getInt("id"),
                             rsProduto.getString("nome"),
                             rsProduto.getString("foto"),
+                            rsProduto.getInt("quantidade"),
                             rsProduto.getFloat("preco")));
                 }
                 
@@ -79,7 +80,7 @@ public class CompraDAO extends DAO {
                         rs.getFloat("frete"),
                         rs.getFloat("total"));
 
-            String sqlProduto = "SELECT produto.id, produto.nome, produto.foto, compra_produto.preco"
+            String sqlProduto = "SELECT produto.id, produto.nome, produto.foto, compra_produto.quantidade, compra_produto.preco"
                     + " FROM compra_produto"
                     + " INNER JOIN produto ON compra_produto.id_produto = produto.id"
                     + " WHERE compra_produto.id = " + compra.getId();
@@ -93,6 +94,7 @@ public class CompraDAO extends DAO {
                         rsProduto.getInt("id"),
                         rsProduto.getString("nome"),
                         rsProduto.getString("foto"),
+                        rsProduto.getInt("quantidade"),
                         rsProduto.getFloat("preco")));
             }
 
@@ -118,8 +120,8 @@ public class CompraDAO extends DAO {
             
             compraProdutos.forEach(produto -> {
                 try {                
-                    String sqlProduto = "INSERT INTO compra_produto(id, id_produto, preco) "
-                            + "VALUES(" + id + "," + produto.getId_produto() + "," + produto.getPreco() + ")";
+                    String sqlProduto = "INSERT INTO compra_produto(id, id_produto, quantidade, preco) "
+                            + "VALUES(" + id + "," + produto.getId_produto() + "," + produto.getQuantidade()+ "," + produto.getPreco() + ")";
                     
 
                     PreparedStatement stmProduto = con.prepareStatement(sqlProduto, Statement.RETURN_GENERATED_KEYS);
